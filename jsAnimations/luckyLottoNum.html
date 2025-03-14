@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Lotto Number Example</title>
+    <style>
+        #number {
+            height: 75px;
+            width: 75px;
+            font-size: 45px;
+            font-weight: bold;
+            margin: 10px;
+            margin-left: 70px;
+            text-align: center;
+            line-height: 75px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Lotto Number Generator</h3>
+    <button id="generate">Click here to start!</button>
+    <button id="stop">Click here to stop!</button>
+    <div id="number"></div>
+
+    <script>
+        var isClicked = false;
+        var button = document.getElementById("generate");
+        var div = document.getElementById("number");
+        button.addEventListener("click", numGen);
+
+        var stopButton = document.getElementById("stop");
+        stopButton.addEventListener("click", stopNum);
+        var timer;
+
+        function numGen() {
+            if(!isClicked) {
+                isClicked = true;
+                div.style.border = "solid 2px dashed";
+                timer = setInterval(randNum, 20);
+            
+                function randNum() {
+                    var num = parseInt(Math.random() * 10);
+                    div.innerHTML = num;
+                }
+            }
+        }
+
+        function stopNum() {
+            clearInterval(timer);
+            isClicked = false;
+        }
+    </script>
+</body>
+</html>

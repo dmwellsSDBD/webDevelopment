@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Div with Keyboard Interaction</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        #container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        #rotating-box {
+            height: 100px;
+            width: 100px;
+            border: 5px blue ridge;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="rotating-box" tabindex="0"></div>
+    </div>
+
+    <script>
+        var box = document.getElementById("rotating-box");
+        document.body.addEventListener("keydown", rotate);
+        var degrees = 0;
+        var right;
+        var left;
+
+        function rotate(event) {
+            if(event.key == "ArrowRight") {
+                // clear the right so interval doesn't double
+                clearInterval(right);
+                clearInterval(left);
+                right = setInterval(spinRight, 100);
+
+                function spinRight() {
+                    box.style.transform = "rotate(" + degrees + "deg)";
+                    degrees += 25;
+                }
+            } else if(event.key == "ArrowLeft") {
+                // clear the left so interval doesn't double
+                clearInterval(right);
+                clearInterval(left);
+                left = setInterval(spinLeft, 100);
+                function spinLeft() {
+                    box.style.transform = "rotate(" + degrees + "deg)";
+                    degrees -= 25;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

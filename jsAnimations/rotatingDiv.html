@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Div Example</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        #container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        #rotating-box {
+            height: 200px;
+            width: 200px;
+            border: 2px dotted black;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="rotating-box"></div>
+    </div>
+
+    <script>
+        var box = document.getElementById("rotating-box");
+        setInterval(rotate, 100);
+        var degrees = 0;
+
+        function rotate() {
+            box.style.transform = "rotate(" + degrees + "deg)";
+            degrees += 25;
+        }
+    </script>
+</body>
+</html>
